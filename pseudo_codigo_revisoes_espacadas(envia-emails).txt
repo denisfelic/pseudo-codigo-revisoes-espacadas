@@ -1,0 +1,73 @@
+DATA_DO_ESTUDO = new Date(input())
+UM_DIA = new Day;
+UM_DIA_EM_SEGUNDOS = ((60*60)  * 24)
+
+// cria as data de revisões a partir do dia em que estudou
+
+dia_que_estudou = DATA_DO_ESTUDO
+dia_rev_24h = DATA_DO_ESTUDO.adicionar_dia((UM_DIA * 1))
+dia_rev_7_dias = DATA_DO_ESTUDO.adicionar_dia((UM_DIA * 7))
+dia_rev_15_dias = DATA_DO_ESTUDO.adicionar_dia((UM_DIA * 15))
+dia_rev_1_mes = DATA_DO_ESTUDO.adicionar_dia((UM_DIA * 30))
+dia_rev_3_meses = DATA_DO_ESTUDO.adicionar_dia((UM_DIA * 90))
+
+
+
+link_conteudo_estudado = input()
+titulo_conteudo_estudado = input()
+email_destino = input()
+
+conteudo_revisao = {
+	titulo: titulo_conteudo_estudado,
+	link : link_conteudo_estudado,
+	email: email_destino
+}
+
+
+intervalo(UM_DIA_EM_SEGUNDOS => {
+	data_atual = new Date().now()
+
+
+	swich (data_atual)
+		caso data_atual === dia_rev_24h:
+			enviar_email(conteudo_revisao, dia_rev_24h.toDays()) 
+			break
+
+		caso data_atual === dia_rev_7_dias:
+			enviar_email(conteudo_revisao, dia_rev_7_dias.toDays()) 
+			break
+
+		caso data_atual === dia_rev_15_dias:
+			enviar_email(conteudo_revisao, dia_rev_15_dias.toDays()) 
+			break
+
+		caso data_atual === dia_rev_1_mes:
+			enviar_email(conteudo_revisao, dia_rev_1_mes.toDays()) 
+			break
+
+		caso data_atual === dia_rev_3_meses:
+			enviar_email(conteudo_revisao, dia_rev_3_meses.toDays()) 
+			break
+
+		default: break;
+
+})
+
+
+funcao enviar_email(objeto_email, msg_extra){
+	
+	try{
+		enviar_email_para({
+			from: www.meudominio.com,
+			to: objeto_email.email,
+			subject: `Matéria ${objeto_email.titulo} | Revisão de : ${msg_extra}`
+			content: objeto_email
+		})
+
+
+		print("Email da revisão de ${msg_extra} data matéria ${objeto_email.titulo}, enviado com sucesso para ${objeto_email.email}")
+	}
+	catch(erro){
+		print("Erro ao enviar e-mail ${msg_extra} do conteúdo: ${objeto_email.titulo} para ${objeto_email.email}")
+	}
+}
