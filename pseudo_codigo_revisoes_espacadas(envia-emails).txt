@@ -28,7 +28,7 @@ intervalo(UM_DIA_EM_SEGUNDOS => {
 	data_atual = new Date().now()
 
 
-	swich (data_atual)
+	switch (data_atual)
 		caso data_atual === dia_rev_24h:
 			enviar_email(conteudo_revisao, dia_rev_24h.toDays()) 
 			break
